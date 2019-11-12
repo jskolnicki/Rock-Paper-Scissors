@@ -10,8 +10,7 @@ Paper = ["Paper", "paper", "P", "p"]
 
 print("Enter your name:")
 
-# name = input()
-name = "Jared"
+name = input()
 
 print("Hello, " + name + "!")
 print("Let's play Rock, Paper, Scissors!")

@@ -1,62 +1,76 @@
 import random
-computer = ["Rock","Paper","Scissors"]
+
+computer = ("Rock","Paper","Scissors")
+
+seriesWins = 0
+seriesLosses = 0
+
 Wins = 0
-Losses = 0
 Ties = 0
+Losses = 0
 
-Rock = ["Rock", "rock", "R", "r"]
-Scissors = ["Scissors", "scissors", "S", "s"]
-Paper = ["Paper", "paper", "P", "p"]
+rock = ("Rock","rock","R","r")
+paper = ("Paper","paper","P","p")
+scissors = ("Scissors","scissors","S","s")
 
-print("Enter your name:")
+def game_reset():
+    Wins = 0
+    Losses = 0
+    Ties = 0
 
-name = input()
+print("Welcome to RPS!")
 
-print("Hello, " + name + "!")
-print("Let's play Rock, Paper, Scissors!")
-print("")
-print("What score do you want to play to?")
+name = input("Enter Your Name: ")
 
-# score = int(input())
-score = 3
-
-print("")
-print("Enter your first move:")
+print("Welcome, " + str(name) + "! Let's set the ground rules!")
 
 
-
-for i in range(1000):
-    y = random.choice(computer)
-    i = input()
-    if (i in Rock and y == "Scissors") or (i in Scissors and y == "Paper") or (i in "Paper" and y == "Rock"):
-        Wins += 1
-        print("Your opponent picked " + str(y))
-        if Wins == score:
-            print("You win!!")
-            print("Wins = " + str(Wins) + "  Losses = " + str(Losses) + "  Ties = " + str(Ties))
-            print("")
-            print("Congratulations, " + str(name) +  ", you have won the series!")
-            break
-        else:
-            print("You Win!!")
-    elif (i in Rock and y == "Paper") or (i in Scissors and y == "Rock") or (i in Paper and y == "Scissors"):
-        Losses += 1
-        print("Your opponent picked " + str(y))
-        if Losses == score:
-            print("You lose")
-            print("Wins = " + str(Wins) + "  Losses = " + str(Losses) + "  Ties = " + str(Ties))
-            print("")
-            print("Sorry, " + str(name) +  ", you have lost the series.. Better luck next time!")
-            break
-        else:
-            print("You lose")   
-    elif (i in Rock and y == "Rock") or (i in Scissors and y == "Scissors") or (i in Paper and y == "Paper"):
-        Ties += 1
-        print("Your opponent also picked " + str(y))
-        print("You tied.")
+for a in range(100):
+    score = input("What score do you want to play to? ")
+    if score.isdigit():
+        score = int(score)
+        print("")
+        break
     else:
-        print("You typed an Incorrect response. Choose 'Rock', 'Paper','Scissors'")
+        print("")
+        print("Please enter a valid number.")
+        
+for b in range(100):
+    series = input(("How many series of " + str(score) + " do you want to play to? "))
+    if series.isdigit():
+        series = int(series)
+        print("Lets Begin!")
+        print("______________________________________________________")
+        break
+    else:
+        print("")
+        print("Please enter a valid number")
+        
+for c in range(10):
+    comChoice = random.choice(computer)
+    myChoice = input("Enter Your Move: ")
     
-    print("Wins = " + str(Wins) + "  Losses = " + str(Losses) + "  Ties = " + str(Ties))
+#Wins
+    if (myChoice in rock and comChoice == "Scissors") or (myChoice in paper and comChoice == "Rock") or (myChoice in scissors and comChoice == "Paper"):
+        Wins += 1
+        print("The computer picked " + str(comChoice) + ". You WIN!")
+
+#Losses
+    elif (myChoice in rock and comChoice == "Paper") or (myChoice in paper and comChoice == "Scissors") or (myChoice in scissors and comChoice == "Rock"):
+        Losses += 1
+        print("The computer picked " + str(comChoice) + ". You LOSE.")
+#Tie
+    elif (myChoice in rock and comChoice == "Rock") or (myChoice in paper and comChoice == "Paper") or (myChoice in scissors and comChoice == "Scissors"):
+        Ties += 1
+        print("The computer also picked " + str(comChoice) + ". You Tied.")
+#Jargon
+    else:
+        print("You have typed an incorrect response. Please Try Again.")
+
+#After Action
     print("")
-    print("Enter your next move:")
+    print("Updated Score")
+    print("My Series Wins: " + str(seriesWins) + "  Computer Series Wins: " + str(seriesLosses))
+    print("Wins = " + str(Wins) + "  Losses = " + str(Losses) + "  Ties = " + str(Ties))
+    print("______________________________________________________")
+    
